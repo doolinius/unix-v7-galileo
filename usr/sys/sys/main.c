@@ -34,7 +34,8 @@ extern int kend;
  */
 main()
 {
-
+	// x86 machine dependent startup function
+	// frees all 'core' memory, turns off floppy motor (heh)
 	startup();
 	/*
 	 * set up system process
@@ -53,11 +54,11 @@ main()
 	 * set up 'known' i-nodes
 	 */
 
-	clkstart();
-	cinit();
-	binit();
-	iinit();
-	rootdir = iget(rootdev, (ino_t)ROOTINO);
+	clkstart(); // start the clock (machine dependent)
+	cinit(); // character device init. frees character buffers and devices
+	binit(); // buffer init. free all buffers 
+	iinit(); // inode init. reads the root superblock
+	rootdir = iget(rootdev, (ino_t)ROOTINO); // get the root inode
 	rootdir->i_flag &= ~ILOCK;
 	u.u_cdir = iget(rootdev, (ino_t)ROOTINO);
 	u.u_cdir->i_flag &= ~ILOCK;
