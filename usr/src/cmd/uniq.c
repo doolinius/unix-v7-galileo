@@ -78,7 +78,7 @@ register char buf[];
 	return(0);
 }
 
-pline(buf)
+int pline(buf)
 register char buf[];
 {
 
@@ -87,13 +87,13 @@ register char buf[];
 	case 'u':
 		if(uniq) {
 			uniq = 0;
-			return;
+			return 0;
 		}
 		break;
 
 	case 'd':
 		if(uniq) break;
-		return;
+		return 0;
 
 	case 'c':
 		printf("%4d ", linec);
