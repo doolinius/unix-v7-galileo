@@ -36,6 +36,7 @@ It would be great to get as much of the Galileo hardware working in v7 UNIX as p
 ├── contrib
 │   ├── 8086
 │   ├── boot
+|   |── pci
 ├── dev
 ├── etc
 ├── hd0unix
